@@ -20,6 +20,15 @@ const persistor = persistStore(store);
 export default class App extends Component {
 
   async componentDidMount() {
+    if (Platform.OS === 'ios') {
+      firebase.messaging().hasPermission().then(enabled => {
+        if (!enabled) {
+          firebase.messaging().requestPermission().then(() => {
+            firebase.messaging().registerForNotifications();
+          });
+        } 
+      });
+    }
     const notificationOpen = await firebase.notifications().getInitialNotification();
     if (notificationOpen) {
       const action = notificationOpen.action;
@@ -91,7 +100,7 @@ export default class App extends Component {
   }
 
   render() {
-    Text.defaultProps.allowFontScaling = false;
+    // Text.defaultProps.allowFontScaling = false;
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

@@ -1,7 +1,6 @@
-const blacklist = require('metro/src/blacklist'); // eslint-disable-line
-
+const blacklist = require('metro-config/src/defaults/blacklist') //eslint-disable-line
 module.exports = {
-  getBlacklistRE() {
-    return blacklist([/react-native\/local-cli\/core\/__fixtures__.*/]);
+  resolver: {
+    blacklistRE: blacklist([/react-native\/local-cli\/core\/__fixtures__.*/]),
   },
 };
