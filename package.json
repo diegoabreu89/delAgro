@@ -55,7 +55,7 @@
     "jest": "22.3.0",
     "metro": "^0.53.1",
     "metro-core": "^0.26.0",
-    "metro-react-native-babel-preset": "^0.45.0",
+    "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.2.0",
     "schedule": "^0.4.0"
   },
