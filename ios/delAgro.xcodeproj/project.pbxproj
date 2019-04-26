@@ -922,6 +922,10 @@
 			isa = PBXGroup;
 			children = (
 				6AE89249226FA548008412BB /* libRCTOrientation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6A357E152270D7E300E4624D /* Products */ = {
 			isa = PBXGroup;
 			children = (
