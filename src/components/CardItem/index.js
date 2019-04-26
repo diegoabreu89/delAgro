@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import VideoPlayer from '../../containers/VideoPlayerContainer';
@@ -22,7 +22,9 @@ export default class CardItem extends Component {
       <View style={styles.container}>
         <View style={styles.videoContainer}>
           <VideoPlayer id={lot.id} uri={lot.video_url} thumbnail={lot.thumbnail_url} status={lot.status} />
-          <Icon name='expand' size={22} style={{ position: 'absolute', color: 'white', zIndex: 10, bottom: 10, left: 10 }} onPress={() => this.loadFullScreen(lot.video_url)} />
+          <TouchableOpacity style={{ position: 'absolute', zIndex: 10, bottom: 10, left: 10 }} hitSlop={{ top: 20, right: 20, left: 20, bottom: 20 }} onPress={() => this.loadFullScreen(lot.video_url)}>
+            <Icon name='expand' size={22} style={{ color: 'white' }} />
+          </TouchableOpacity>
         </View>
         <View style={styles.footer}>
           { details ?

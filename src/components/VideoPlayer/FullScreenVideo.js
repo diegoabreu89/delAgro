@@ -26,7 +26,6 @@ const styles = {
   },
   iconFullScreen: {
     position: 'absolute',
-    color: 'white',
     zIndex: 20,
     bottom: 10,
     left: 10,
@@ -102,8 +101,10 @@ export default class FullScreenVideo extends Component {
               <Icon name='pause' size={28} style={styles.icon} />
             }
           </View>
-          <Icon name='compress' size={28} style={styles.iconFullScreen} onPress={this.onverticalScreen} />
         </TouchableOpacity>
+        <TouchableOpacity style={styles.iconFullScreen} hitSlop={{ top: 20, right: 20, left: 20, bottom: 20 }} onPress={this.onverticalScreen}>
+          <Icon name='compress' size={28} style={{ color: 'white' }} />
+        </TouchableOpacity>    
       </View>
     );
   }
