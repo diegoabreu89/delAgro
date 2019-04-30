@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Orientation from 'react-native-orientation';
 
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
@@ -15,6 +16,10 @@ class LoginScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    Orientation.lockToPortrait();
   }
 
   onSubmit(values) {
