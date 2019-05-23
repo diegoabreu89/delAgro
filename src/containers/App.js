@@ -21,12 +21,12 @@ export default class App extends Component {
 
   async componentDidMount() {
     if (Platform.OS === 'ios') {
-      firebase.messaging().hasPermission().then(enabled => {
+      firebase.messaging().hasPermission().then((enabled) => {
         if (!enabled) {
           firebase.messaging().requestPermission().then(() => {
             firebase.messaging().registerForNotifications();
           });
-        } 
+        }
       });
     }
     const notificationOpen = await firebase.notifications().getInitialNotification();
@@ -68,6 +68,7 @@ export default class App extends Component {
         notification_to_be_displayed
           .android.setPriority(firebase.notifications.Android.Priority.High)
           .android.setChannelId('main_channel')
+          .android.setSmallIcon('ic_notification')
           .android.setVibrate(1000);
       }
 
@@ -75,20 +76,8 @@ export default class App extends Component {
     });
 
     this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
-      // Get the action triggered by the notification being opened
-      const action = notificationOpen.action;
       // Get information about the notification that was opened
       const notification = notificationOpen.notification;
-      const seen = [];
-      alert(JSON.stringify(notification.data, (key, val) => {
-        if (val != null && typeof val === 'object') {
-          if (seen.indexOf(val) >= 0) {
-            return;
-          }
-          seen.push(val);
-        }
-        return val;
-      }));
       firebase.notifications().removeDeliveredNotification(notification.notificationId);
 
     });
