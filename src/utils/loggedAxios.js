@@ -7,18 +7,18 @@ const service = new Service(axios);
 service.register({
   onRequest(config) {
     let newConfig = config;
-    firebase.messaging().getToken()
+    return firebase.messaging().getToken()
       .then((fcmToken) => {
         if (fcmToken) {
           newConfig = {
             ...newConfig,
             headers: {
               ...newConfig.headers,
-              device_token: fcmToken,
+              'device-token': fcmToken,
             } };
         }
+        return newConfig;
       });
-    return newConfig;
   },
 });
 

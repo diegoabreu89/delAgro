@@ -12,16 +12,17 @@ service.register({
     const token = store && store.getState() && store.getState().session && store.getState().session.creds ? store.getState().session.creds.token : null;
     let newConfig = config;
     if (token) {
-      firebase.messaging().getToken()
+      return firebase.messaging().getToken()
         .then((fcmToken) => {
           if (fcmToken) {
             newConfig = {
               ...newConfig,
               headers: {
                 ...newConfig.headers,
-                device_token: fcmToken,
+                'device-token': fcmToken,
               } };
           }
+          return newConfig;
         });
     }
     return newConfig;
