@@ -1095,6 +1095,10 @@ aws4@^1.2.1, aws4@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
+axios-middleware@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/axios-middleware/-/axios-middleware-0.3.1.tgz#2dd29ee5a821b2499be887e256d60872eb715542"
+
 axios@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
@@ -5855,6 +5859,10 @@ react-native-check-box@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-native-check-box/-/react-native-check-box-2.1.0.tgz#a4e5fa2c1860cfc3f5758ae3493b6ec2ec7c2878"
   dependencies:
     prop-types "^15.5.7"
+
+react-native-clean-project@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-clean-project/-/react-native-clean-project-3.2.3.tgz#40313a3a4131353d5d082d7691b41b4de6f40eb2"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"

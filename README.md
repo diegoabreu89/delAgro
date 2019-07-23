@@ -16,3 +16,9 @@ Prerequisite packages:
 
 ## To Run
 `react-native run-ios`
+
+
+## ERRORS
+When `RNVideoProcessing-Bridging-Header.h` error, do:
+1) `react-native unlink react-native-video-processing`
+2) Follow this instructions `https://www.youtube.com/watch?v=HRjgeT6NQJM&feature=youtu.be`
