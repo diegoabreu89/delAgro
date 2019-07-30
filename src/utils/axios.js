@@ -9,7 +9,14 @@ const service = new Service(axios);
 
 service.register({
   onRequest(config) {
-    const token = store && store.getState() && store.getState().session && store.getState().session.creds ? store.getState().session.creds.token : null;
+    let token = null,
+      client = null,
+      uid = null;
+    if (store && store.getState() && store.getState().session && store.getState().session.creds) {
+      token = store.getState().session.creds.token;
+      client = store.getState().session.creds.client;
+      uid = store.getState().session.creds.uid;
+    }
     let newConfig = config;
     if (token) {
       return firebase.messaging().getToken()
@@ -20,6 +27,8 @@ service.register({
               headers: {
                 ...newConfig.headers,
                 'device-token': fcmToken,
+                client,
+                uid,
               } };
           }
           return newConfig;
