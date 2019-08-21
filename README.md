@@ -16,3 +16,14 @@ Prerequisite packages:
 
 ## To Run
 `react-native run-ios`
+
+## Possible errors
+#config.h
+#glog
+Erase DerivedData and third-party from /Users/max/Library/Developer/Xcode and /Users/max/Desktop/ASAP/Proyectos/delAgro/node_modules/react-native/third-party-podspecs
+Run this `cd ./node_modules/react-native/third-party/glog-0.3.4 && ../../scripts/ios-configure-glog.sh` on project's root
+Added libfishhook.a to Link Binary With Libraries
+
+#Unlink for Android to work, then link again to make videos work
+`react-native unlink react-native-video`
+`react-native link react-native-video`
