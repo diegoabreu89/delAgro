@@ -18,7 +18,6 @@ const persistor = persistStore(store);
 
 export default class App extends Component {
   render() {
-    Text.defaultProps.allowFontScaling = false;
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
