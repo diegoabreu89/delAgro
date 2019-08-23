@@ -39,7 +39,7 @@ export default class Home extends Component {
     if (allLots.length === 0) return fetchAllLots();
     const nrLots = allLots.length / 5;
     const page = nrLots.toFixed(0) === 0 ? 1 : Number(nrLots.toFixed(0));
-    return this.setState({ page })
+    return this.setState({ page });
   }
 
   onScrolled() {
