@@ -6734,6 +6734,11 @@ react-native-modal@^5.0.1:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
 
+react-native-orientation@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-orientation/-/react-native-orientation-3.1.3.tgz#d45803841fe94b6cce9acbe904fd5ca191a3711e"
+  integrity sha512-A0h0E+2f95X4avmhaBG1ZT8WDxBACA/q//JN2eF1E7kq8AJVxt5XDiavv+aSBkBlqFsfF3bIS+T/DB5mXmnxuA==
+
 react-native-phone-call@^1.0.4:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-phone-call/-/react-native-phone-call-1.0.9.tgz#4468ec6f95856557fbff9bd69a0db04b54c35e1d"
@@ -6767,6 +6772,13 @@ react-native-vector-icons@^4.5.0:
     lodash "^4.0.0"
     prop-types "^15.5.10"
     yargs "^8.0.2"
+
+react-native-video-fullscreen@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-video-fullscreen/-/react-native-video-fullscreen-0.0.1.tgz#b11c8d06ee42a0f165b11bcfa3cd486814c9e086"
+  integrity sha1-sRyNBu5CoPFlsRvPo81IaBTJ4IY=
+  dependencies:
+    keymirror "0.1.1"
 
 react-native-video-processing@^1.20.0:
   version "1.20.0"

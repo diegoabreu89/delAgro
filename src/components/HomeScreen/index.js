@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import NavBarHome from '../NavBarHome';
 import CardItem from '../CardItem';
 import LoadingBanner from '../LoadingBanner';
-
+import FullScreenVideo from '../VideoPlayer/FullScreenVideo';
 import styles from './styles';
 
 /* const UploadBanner = () => (
@@ -78,15 +78,20 @@ export default class Home extends Component {
   render() {
     const list = this.props.allLots;
     const { navigation, uploading, refreshing } = this.props;
+    const { params } = navigation.state;
+    const landscape = params ? params.fullScreen : false;
+    const videoFullScreen = params && params.videofs ? params.videofs : false;
     const data =
       list.map(item => ({ key: `${item.id}`, navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
-        <NavBarHome navigation={navigation} />
+        { !videoFullScreen && <NavBarHome navigation={navigation} />}
+        { videoFullScreen && <FullScreenVideo uri={videoFullScreen} navigation={navigation} /> }
         <View style={{ flex: 8 }}>
           {uploading && <LoadingBanner title="Subiendo Publicación" />}
           {list.length !== 0 &&
             <FlatList
+              scrollEnabled={!landscape}
               onScroll={this.onScrolled}
               data={data}
               renderItem={this.renderItem}

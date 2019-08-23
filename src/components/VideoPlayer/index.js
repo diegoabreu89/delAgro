@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Video from 'react-native-video';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
+import { View, TouchableOpacity, ActivityIndicator, Text, Image } from 'react-native';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import vendido from '../../assets/images/vendido.png';
@@ -44,6 +44,9 @@ export default class VideoPlayer extends Component {
           <View style={styles.backgroundVideo}>
             <Video
               source={{ uri }}
+              ref={(ref) => {
+                this.player = ref;
+              }}
               resizeMode='cover'
               repeat
               muted
