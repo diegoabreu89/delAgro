@@ -12,7 +12,7 @@ export default function MainButton({ onPress, title, style, icon, disabled, text
     >
       <View style={[styles.mainButton, style]}>
         <View style={{ flex: 3, alignItems: icon.length ? 'flex-start' : 'center' }}>
-          <Text style={[styles.text, textStyle]}>{ title }</Text>
+          <Text style={[styles.text, textStyle]}>{title}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -22,10 +22,10 @@ export default function MainButton({ onPress, title, style, icon, disabled, text
 MainButton.propTypes = {
   onPress: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  style: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  style: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.object, PropTypes.number]),
   icon: PropTypes.string,
   disabled: PropTypes.bool,
-  textStyle: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  textStyle: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.object, PropTypes.number]),
 };
 
 MainButton.defaultProps = {

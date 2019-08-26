@@ -26,5 +26,6 @@ module.exports = {
       devDependencies: false,
       optionalDependencies: false,
     }],
+    'eslint linebreak-style': ["error", "windows"],
   },
 };

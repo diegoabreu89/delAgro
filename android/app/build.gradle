@@ -103,8 +103,8 @@ android {
         applicationId "com.delagro"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
-        versionName "0.0.13"
+        versionCode 18
+        versionName "0.0.18"
         missingDimensionStrategy 'react-native-camera', 'general'
     }
     signingConfigs {
