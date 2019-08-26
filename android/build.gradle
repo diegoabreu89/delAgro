@@ -36,14 +36,3 @@ allprojects {
         maven { url "https://maven.google.com" }
     }
 }
-<<<<<<< HEAD
-=======
-
-ext {
-    compileSdkVersion           = 28
-    targetSdkVersion            = 28
-    buildToolsVersion           = "28.0.3"
-    googlePlayServicesVersion   = "12.0.1"
-    supportLibVersion           = "28.0.0"
-}
->>>>>>> fixed_merge_features
