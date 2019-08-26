@@ -113,6 +113,7 @@ export function fetchAllLots(page = 1) {
   return (dispatch) => {
     dispatch(fetching());
     const queryString = `scope[status]=active&page=${page}`;
+    console.log('LOTS');
     return axiosCustom.get(`/lots?${queryString}`)
       .then(({ data }) => {
         if (data.length === 0) return dispatch(listEnd());

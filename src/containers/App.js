@@ -46,8 +46,6 @@ export default class App extends Component {
     });
 
     this.notificationListener = firebase.notifications().onNotification((notification) => {
-
-      console.log(notification);
       // Process your notification as required
       const notification_to_be_displayed = new firebase.notifications.Notification({
         data: notification.data,
@@ -81,7 +79,6 @@ export default class App extends Component {
 
     });
   }
-
   componentWillUnmount() {
     this.notificationDisplayedListener();
     this.notificationListener();

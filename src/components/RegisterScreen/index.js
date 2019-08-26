@@ -5,7 +5,6 @@ import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
 import CheckBox from 'react-native-check-box';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import Orientation from 'react-native-orientation';
 import stateTranslations from '../../helpers/stateTranslations';
 

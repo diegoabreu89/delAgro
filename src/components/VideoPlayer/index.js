@@ -11,6 +11,7 @@ import styles from './styles';
 import { colors } from '../../styles';
 
 
+
 export default class VideoPlayer extends Component {
   constructor(props) {
     currentTime = 0;
@@ -23,6 +24,7 @@ export default class VideoPlayer extends Component {
     this.onPress = this.onPress.bind(this);
   }
 
+
   componentWillReceiveProps() {
     const { id, visibleItems } = this.props;
     if (!this.state.paused && !visibleItems.includes(id)) {
@@ -33,6 +35,7 @@ export default class VideoPlayer extends Component {
   onPress() {
     this.setState({ paused: !this.state.paused, active: !this.state.active });
   }
+
 
   render() {
     const { paused, active } = this.state;
@@ -54,6 +57,7 @@ export default class VideoPlayer extends Component {
               style={{ flex: 1 }}
               onProgress={({ currentTime }) => { this.currentTime = currentTime; }}
             />
+
           </View> :
           <Image style={styles.backgroundVideo} source={{ uri: thumbnail }} />
         }

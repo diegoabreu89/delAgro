@@ -75,6 +75,7 @@ export default class Home extends Component {
     );
   }
 
+
   render() {
     const list = this.props.allLots;
     const { navigation, uploading, refreshing } = this.props;

@@ -98,7 +98,7 @@ export default class FullScreenVideo extends Component {
             style={{ flex: 1 }}
           />
           <View style={styles.iconContainer}>
-            { paused ?
+            {paused ?
               <Icon name='play' size={28} style={styles.icon} /> :
               <Icon name='pause' size={28} style={styles.icon} />
             }

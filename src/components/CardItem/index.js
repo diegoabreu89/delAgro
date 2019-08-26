@@ -26,7 +26,7 @@ export default class CardItem extends Component {
           <Icon name='expand' size={22} style={{ position: 'absolute', color: 'white', zIndex: 10, bottom: 10, left: 10 }} onPress={() => this.loadFullScreen(lot.video_url)} />
         </View>
         <View style={styles.footer}>
-          { details ?
+          {details ?
             <DetailsCardFooter lot={lot} /> :
             <CardFooter navigation={this.props.navigation} lot={lot} />
           }
