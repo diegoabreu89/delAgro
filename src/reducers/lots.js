@@ -3,7 +3,7 @@ import RNFetchBlob from 'react-native-fetch-blob';
 
 import axiosCustom from '../utils/axios';
 import loggedAxios from '../utils/loggedAxios';
-import { navigateToHomeLoggedIn } from '../reducers/rootNavigatorReducer';
+import { navigateToHomeLoggedIn, navigateToDetailsScreen } from '../reducers/rootNavigatorReducer';
 
 const initialState = {
   allLots: [],
@@ -121,6 +121,21 @@ export function fetchAllLots(page = 1) {
         return dispatch(allLotsSuccess(data));
       })
       .catch(error => dispatch(setError({ error })));
+  };
+}
+
+export function fetchLot(lotId) {
+  return (dispatch) => {
+    dispatch(fetching());
+    return axiosCustom.get(`/lots/${lotId}`)
+      .then(({ data }) => {
+        dispatch(selectLot(data));
+        dispatch(navigateToDetailsScreen());
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch(setError({ error }));
+      });
   };
 }
 

@@ -19,6 +19,9 @@ export const store = createStore(
 const persistor = persistStore(store);
 
 export default class App extends Component {
+  state = {
+    lotId: null,
+  }
 
   async componentDidMount() {
     if (Platform.OS === 'ios') {
@@ -41,12 +44,12 @@ export default class App extends Component {
     firebase.notifications().android.createChannel(channel);
 
     this.notificationDisplayedListener = firebase.notifications().onNotificationDisplayed((notification) => {
-      // Process your notification as required
-      // ANDROID: Remote notifications do not contain the channel ID. You will have to specify this manually if you'd like to re-display the notification.
+    // Process your notification as required
+    // ANDROID: Remote notifications do not contain the channel ID. You will have to specify this manually if you'd like to re-display the notification.
     });
 
     this.notificationListener = firebase.notifications().onNotification((notification) => {
-      // Process your notification as required
+    // Process your notification as required
       const notification_to_be_displayed = new firebase.notifications.Notification({
         data: notification.data,
         sound: 'default',
@@ -67,8 +70,13 @@ export default class App extends Component {
     });
 
     this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
-      // Get information about the notification that was opened
+    // Get information about the notification that was opened
       const notification = notificationOpen.notification;
+      const { _data } = notification;
+      if (_data && _data.lot_id) {
+        this.setState({ lotId: parseInt(_data.lot_id) });
+      }
+
       /* const { navigation } = this.props;
       const navigateToDetails = NavigationActions.navigate({
         routeName: 'Details',
@@ -76,7 +84,6 @@ export default class App extends Component {
       });
       this.props.navigation.dispatch(navigateToDetails); */
       firebase.notifications().removeDeliveredNotification(notification.notificationId);
-
     });
   }
   componentWillUnmount() {
@@ -89,7 +96,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <RootContainer />
+          <RootContainer lotId={this.state.lotId} />
         </PersistGate>
       </Provider>
     );

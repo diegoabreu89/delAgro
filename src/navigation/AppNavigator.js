@@ -3,7 +3,6 @@ import { ScrollView, View, BackHandler, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
-
 import Events from '../utils/events';
 import Login from '../containers/LoginScreen';
 import Register from '../containers/RegisterScreen';
@@ -75,6 +74,7 @@ export const AppNavigator = StackNavigator({
   loggedInFlow: {
     screen: DrawerNavigator({
       HomeLoggedIn: { screen: loggedHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      Details: { screen: Details },
       myProfile: { screen: MyProfile, navigationOptions: { drawerLabel: 'Mi perfil' } },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
       terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Términos y condiciones' } },

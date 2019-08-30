@@ -5,7 +5,6 @@ import { AppNavigator } from '../navigation/AppNavigator';
 const { BACK, navigate, back } = NavigationActions;
 
 // Action Types
-
 const NAV_HOME_LOGGED_OUT = 'NAV_HOME_LOGGED_OUT';
 const NAV_WELCOME_SCREEN = 'NAV_WELCOME_SCREEN';
 const NAV_HOME_LOGGED_IN = 'NAV_HOME_LOGGED_IN';
@@ -14,8 +13,9 @@ const NAV_REGISTER = 'NAV_REGISTER';
 const CAMERA = 'CAMERA';
 const FILTERED_HOME_IN = 'FILTERED_HOME_IN';
 const FILTERED_HOME_OUT = 'FILTERED_HOME_OUT';
-// Reducer
+const NAV_DETAILS_SCREEN = 'NAV_DETAILS_SCREEN';
 
+// Reducer
 const initialState = AppNavigator.router.getStateForAction(
   NavigationActions.init(),
 );
@@ -57,6 +57,10 @@ export default function reducer(state = initialState, action) {
       return AppNavigator.router.getStateForAction(
         navigate({ routeName: 'FilteredHomeOut' }),
       );
+    case NAV_DETAILS_SCREEN:
+      return AppNavigator.router.getStateForAction(
+        navigate({ routeName: 'Details', params: { prev: 'HomeIn' } }),
+      );
     default:
       return newState || state;
   }
@@ -66,6 +70,10 @@ export default function reducer(state = initialState, action) {
 
 export function navigateToHomeLoggedOut() {
   return { type: NAV_HOME_LOGGED_OUT };
+}
+
+export function navigateToDetailsScreen() {
+  return { type: NAV_DETAILS_SCREEN };
 }
 
 export function navigateToWelcomeScreen() {
