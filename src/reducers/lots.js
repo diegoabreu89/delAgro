@@ -13,6 +13,7 @@ const initialState = {
   listEnd: false,
   isFetching: false,
   refreshing: false,
+  withRedirect: false,
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
@@ -27,6 +28,8 @@ export const MY_LOTS_SUCCESS = 'MY_LOTS_SUCCESS';
 export const APPEND_LOTS = 'APPEND_LOTS';
 export const LIST_END = 'LIST_END';
 export const REFRESH = 'REFRESH';
+export const SELECT_LOT_WITH_REDIRECT = 'SELECT_LOT_WITH_REDIRECT';
+export const REMOVE_REDIRECT = 'REMOVE_REDIRECT';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -46,6 +49,11 @@ export default function reducer(state = initialState, action) {
       return { ...state, error: action.error };
     case SELECT_LOT:
       return { ...state, selected: action.lot };
+    case SELECT_LOT_WITH_REDIRECT:
+      return { ...state, selected: action.lot, withRedirect: true };
+    case REMOVE_REDIRECT:
+      debugger;
+      return { ...state, withRedirect: false };
     case UPLOAD_PENDING:
       return { ...state, uploading: true };
     case UPLOAD_SUCCESS:
@@ -88,6 +96,14 @@ export function setError({ error }) {
 export function selectLot(lot) {
   return { type: SELECT_LOT, lot };
 }
+export function selectLotWithRedirect(lot) {
+  return { type: SELECT_LOT_WITH_REDIRECT, lot };
+}
+
+export function removeRedirect() {
+  return { type: REMOVE_REDIRECT };
+}
+
 
 export function uploadSuccess() {
   return { type: UPLOAD_SUCCESS };
@@ -129,7 +145,8 @@ export function fetchLot(lotId) {
     dispatch(fetching());
     return axiosCustom.get(`/lots/${lotId}`)
       .then(({ data }) => {
-        dispatch(selectLot(data));
+        dispatch(selectLotWithRedirect(data));
+        debugger;
         dispatch(navigateToDetailsScreen());
       })
       .catch((error) => {

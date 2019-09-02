@@ -53,11 +53,13 @@ const loggedHomeStack = StackNavigator({
   EditVideo: { screen: EditVideo },
   Filter: { screen: Filter },
   FilteredHomeIn: { screen: FilteredHome },
+  welcomeScreen: { screen: Welcome },
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: false } });
 
 const guestHomeStack = StackNavigator({
   Home: { screen: Home },
   Details: { screen: Details },
+  welcomeScreen: { screen: Welcome },
   Filter: { screen: Filter },
   FilteredHomeOut: { screen: FilteredHome },
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: false } });
@@ -74,11 +76,11 @@ export const AppNavigator = StackNavigator({
   loggedInFlow: {
     screen: DrawerNavigator({
       HomeLoggedIn: { screen: loggedHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
-      Details: { screen: Details },
       myProfile: { screen: MyProfile, navigationOptions: { drawerLabel: 'Mi perfil' } },
+      Details: { screen: Details },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
-      terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Términos y condiciones' } },
-      LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
+      terms: { screen: () => { }, navigationOptions: { drawerLabel: 'Términos y condiciones' } },
+      LogOut: { screen: () => { }, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
     }, { headerMode: 'none', drawerWidth: 200, contentComponent: CustomDrawerContentComponent, navigationOptions: { gesturesEnabled: false } }),
   },
   welcomeScreen: { screen: Welcome },
