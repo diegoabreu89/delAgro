@@ -12,6 +12,7 @@ import AboutModal from '../../containers/AboutModal';
 
 import styles from './styles';
 
+
 export default class WelcomeScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,6 +26,16 @@ export default class WelcomeScreen extends PureComponent {
 
   componentDidMount() {
     this.props.getStaticData();
+    console.log(this.props.lots.selected);
+    debugger;
+    if (this.props.lots.selected && this.props.lots.withRedirect) {
+      debugger;
+      const navigateToLoggedInFlow = NavigationActions.navigate({ routeName: 'HomeLoggedIn', params: { previous: 'welcome' } });
+      const navigateToDetails = NavigationActions.navigate({ routeName: 'Details', params: { previous: 'welcome' } });
+      this.props.navigation.dispatch(navigateToLoggedInFlow);
+      this.props.navigation.dispatch(navigateToDetails);
+      this.props.removeRedirect();
+    }
   }
 
   toggleModal() {

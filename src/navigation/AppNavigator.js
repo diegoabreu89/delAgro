@@ -3,7 +3,7 @@ import { ScrollView, View, BackHandler, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
-
+import Events from '../utils/events';
 import Login from '../containers/LoginScreen';
 import Register from '../containers/RegisterScreen';
 import Home from '../containers/HomeScreenContainer';
@@ -20,6 +20,8 @@ import FilteredHome from '../containers/FilteredHomeContainer';
 import { addListener } from '../utils/redux';
 import { logout } from '../reducers/login';
 import { showTermsModal } from '../reducers/modals';
+
+let fullscreen = false;
 
 const CustomDrawerContentComponent = (props) => {
   const nav = props.nav; // eslint-disable-line
@@ -48,14 +50,16 @@ const loggedHomeStack = StackNavigator({
   Details: { screen: Details },
   Publish: { screen: Publish },
   Camera: { screen: Camera },
-  EditVideo: {screen: EditVideo},
+  EditVideo: { screen: EditVideo },
   Filter: { screen: Filter },
   FilteredHomeIn: { screen: FilteredHome },
+  welcomeScreen: { screen: Welcome },
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: false } });
 
 const guestHomeStack = StackNavigator({
   Home: { screen: Home },
   Details: { screen: Details },
+  welcomeScreen: { screen: Welcome },
   Filter: { screen: Filter },
   FilteredHomeOut: { screen: FilteredHome },
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: false } });
@@ -64,7 +68,7 @@ const guestHomeStack = StackNavigator({
 export const AppNavigator = StackNavigator({
   loggedOutFlow: {
     screen: DrawerNavigator({
-      HomeLoggedOut: { screen: guestHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      HomeLoggedOut: { screen: guestHomeStack, navigationOptions: { drawerLabel: 'Inicio', drawerLockMode: fullscreen ? 'locked-closed' : null } },
       Login: { screen: Login, navigationOptions: { drawerLabel: 'Iniciar sesión' } },
       Register: { screen: Register, navigationOptions: { drawerLabel: 'Registrarse' } },
     }, { headerMode: 'none', drawerWidth: 200, navigationOptions: { gesturesEnabled: false } }),
@@ -73,16 +77,17 @@ export const AppNavigator = StackNavigator({
     screen: DrawerNavigator({
       HomeLoggedIn: { screen: loggedHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       myProfile: { screen: MyProfile, navigationOptions: { drawerLabel: 'Mi perfil' } },
+      Details: { screen: Details },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
-      terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Términos y condiciones' } },
-      LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
+      terms: { screen: () => { }, navigationOptions: { drawerLabel: 'Términos y condiciones' } },
+      LogOut: { screen: () => { }, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
     }, { headerMode: 'none', drawerWidth: 200, contentComponent: CustomDrawerContentComponent, navigationOptions: { gesturesEnabled: false } }),
   },
   welcomeScreen: { screen: Welcome },
 }, { initialRouteName: 'welcomeScreen', headerMode: 'none', navigationOptions: { gesturesEnabled: false } });
 
 class AppWithNavigationState extends Component {
-  componentDidMount() {     
+  componentDidMount() {
     BackHandler.addEventListener('backPress', () => {
       const { dispatch, nav } = this.props;
       if (this.shouldCloseApp(nav)) {
@@ -90,10 +95,10 @@ class AppWithNavigationState extends Component {
           '',
           '¿Está seguro que desea cerrar la aplicación?',
           [
-            { text: 'Aceptar', onPress: BackHandler.exitApp},
+            { text: 'Aceptar', onPress: BackHandler.exitApp },
             { text: 'Cancelar', onPress: () => null, style: 'cancel' },
           ],
-          { cancelable: true }
+          { cancelable: true },
         );
       }
       dispatch({
@@ -101,10 +106,16 @@ class AppWithNavigationState extends Component {
       });
       return true;
     });
+    this.fullScreenEvent = Events.subscribe('FullScreenEvent', this.loadFullScreenState);
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('backPress');
+    if (this.fullScreenEvent) this.fullScreenEvent.remove();
+  }
+
+  loadFullScreenState = () => {
+    fullscreen = !fullscreen;
   }
 
   shouldCloseApp(nav) {

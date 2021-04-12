@@ -45,6 +45,7 @@ export function fetchFilteredLots({ categoryId, breedId, stateId, weightMin, wei
   if (weightMax) queryString = `${queryString}scope[weight_max]=${weightMax}`;
   return (dispatch, getState) => {
     const { loggedIn } = getState().session;
+    console.log('LOTS FILTERS');
     return axiosCustom.get(`/lots?${queryString}`)
       .then((response) => {
         dispatch(setFilteredLots(response.data));

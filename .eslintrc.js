@@ -21,10 +21,12 @@ module.exports = {
     'react/prefer-stateless-function': [0],
     'jsx-a11y/no-autofocus': ['off'],
     'camelcase': ["off"],
+    'no-debugger':["off"],
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': ['error', {
       devDependencies: false,
       optionalDependencies: false,
     }],
+    'eslint linebreak-style': ["error", "windows"],
   },
 };

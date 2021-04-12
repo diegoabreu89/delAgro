@@ -10,7 +10,12 @@ export default class NavBarBack extends PureComponent {
     const { title } = this.props;
     return (
       <View style={styles.bar} >
-        <TouchableOpacity style={{ flex: 1 }} onPress={() => this.props.navigation.goBack()}>
+        <TouchableOpacity
+          style={{ flex: 1 }}
+          onPress={() => {
+            this.props.navigation.goBack();
+          }}
+        >
           <View style={styles.icon}>
             <Icon name={'chevron-left'} size={30} style={styles.backButton} />
           </View>

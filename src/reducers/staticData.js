@@ -55,6 +55,7 @@ export function setContacts(contacts) {
 }
 
 export function fetchBreeds() {
+  console.log('BREEDS');
   return dispatch => (
     axiosCustom.get('/breeds')
       .then((response) => {
@@ -65,6 +66,7 @@ export function fetchBreeds() {
 }
 
 export function fetchStates() {
+  console.log('STATES');
   return dispatch => (
     axiosCustom.get('/states')
       .then((response) => {
@@ -75,6 +77,7 @@ export function fetchStates() {
 }
 
 export function fetchCategories() {
+  console.log('CATEGORIES');
   return dispatch => (
     axiosCustom.get('/categories')
       .then((response) => {
@@ -85,6 +88,7 @@ export function fetchCategories() {
 }
 
 export function fetchContacts() {
+  console.log('CONTACTS');
   return dispatch => (
     axiosCustom.get('/contacts')
       .then((response) => {

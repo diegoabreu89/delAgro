@@ -6,7 +6,7 @@ import loggedAxios from '../utils/loggedAxios';
 import { showRegisterModal } from './modals';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
+  baseURL: 'https://delagro-api.herokuapp.com/api/v1/',
 });
 
 const initialState = {
